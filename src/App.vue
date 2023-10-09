@@ -1,9 +1,13 @@
 
 <template>
   <div class="ctr">
-    <questions v-if="questionsAnswered < questions.length" :questions="questions" :questionsAnswered="questionsAnswered"
-      @question-answered="questionAnswered" />
-    <result v-else :results="results" :totalCorrect="totalCorrect" />
+    <Transition name="fade" mode="out-in">
+
+      <questions v-if="questionsAnswered < questions.length" :questions="questions" :questionsAnswered="questionsAnswered"
+        @question-answered="questionAnswered" />
+      <result v-else :results="results" :totalCorrect="totalCorrect" />
+
+    </Transition>
     <button type="button" class="reset-btn" @click.prevent="reset"
       v-if="questionsAnswered === questions.length">Reset</button>
   </div>
