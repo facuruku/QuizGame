@@ -1,15 +1,17 @@
 
 <template>
   <div class="ctr">
-    <Transition name="fade" mode="out-in">
+    <Transition name="fade" mode="out-in" enter-active-class="animate__animated animate__flipInX"
+      leave-active-class="animate__animated animate__flipOutX">
 
       <questions v-if="questionsAnswered < questions.length" :questions="questions" :questionsAnswered="questionsAnswered"
         @question-answered="questionAnswered" />
       <result v-else :results="results" :totalCorrect="totalCorrect" />
 
     </Transition>
-    <button type="button" class="reset-btn" @click.prevent="reset"
-      v-if="questionsAnswered === questions.length">Reset</button>
+    <button type="button" class="reset-btn" @click.prevent="reset" v-if="questionsAnswered === questions.length"
+      @mouseover="btnHover = true" @mouseleave="btnHover = false"
+      :class="{ 'animate__animated animate__pulse': btnHover }">Reset</button>
   </div>
 </template>
 
@@ -29,6 +31,7 @@ export default {
     return {
       questionsAnswered: 0,
       totalCorrect: 0,
+      btnHover: false,
 
       questions: [
         {
@@ -124,4 +127,8 @@ export default {
 </script>
 
 
-<style ></style>
+<style >
+.animate__animated {
+  animation-duration: 0.3s;
+}
+</style>

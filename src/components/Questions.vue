@@ -4,7 +4,8 @@
             <div class="bar" :style="{ width: `${questionsAnswered / questions.length * 100}%` }"></div>
             <div class="status">{{ questionsAnswered }} out of {{ questions.length }} questions answered</div>
         </div>
-        <TransitionGroup name="fade">
+        <TransitionGroup name="fade"> <!-- enter-active-class="animate__animated animate_fadeIn"
+            leave-active-class="animate__animated animate__fadeOut" -->
             <div class="single-question" v-for="(question, qIndex) in questions" :key="question.q"
                 v-show="questionsAnswered === qIndex">
                 <div class="question">{{ question.q }}</div>
@@ -32,3 +33,5 @@ export default {
 
 }
 </script>
+
+<style></style>
